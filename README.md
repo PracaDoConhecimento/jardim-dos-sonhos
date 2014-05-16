@@ -1,4 +1,4 @@
-#freela-base
+#Jardim dos Sonhos
 Arquivos iniciais de um projeto de FrontEnd (LESS + Twitter Bootstrap)
 
 
