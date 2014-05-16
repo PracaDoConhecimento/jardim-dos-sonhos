@@ -72,7 +72,6 @@ Class Mensagem {
 
 		// fecha a conexao com o BD
 		$this->conn->Desconectar();
-
 		
 	}
 
@@ -89,19 +88,47 @@ Class Mensagem {
 
 		// abre a conexao com o BD
 		$this->conn->Conectar();
+		$sql = "SELECT * from `mensagens` WHERE id = {$_id};";
+		$query = mysql_query($sql) or die(mysql_error());
+		$num_row = mysql_num_rows($query);
 
+		if ($num_row) {			
+			$row = mysql_fetch_assoc($query);			     
+			mysql_free_result($query);
+			return $row;
+		} 
+		else {
+			return false;
+		}
 
 		// fecha a conexao com o BD
-		//$this->conn->Desconectar();
+		$this->conn->Desconectar();
 
+	}
+
+
+	public function getNumTotal($echo = false) {
+
+		// abre a conexao com o BD
+		$this->conn->Conectar();
+		$sql = "SELECT COUNT(*) as total from `mensagens`;";
+		$query = mysql_query($sql) or die(mysql_error());
+		$rows = mysql_fetch_assoc($query);		
+
+		// fecha a conexao com o BD
+		$this->conn->Desconectar();
+
+		if ($echo) {
+			echo $rows['total'];
+		} else {
+			return $rows['total'];
+		}
+		
 	}
 
 
 
 
-
 }
-
-$mensagem = new Mensagem();
 
 ?>

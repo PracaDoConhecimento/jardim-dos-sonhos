@@ -1,7 +1,7 @@
 <?php 
 require_once('mensagem.php');
-	
 
+$mensagem = new Mensagem();
 $action = (isset($_POST['action'])) ? $_POST['action'] : "";
 
 switch ($action) {

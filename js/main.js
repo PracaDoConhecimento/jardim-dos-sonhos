@@ -1,5 +1,17 @@
 $(document).ready(function() {
 
+	/* nav walker */
+	$page = $('.page');
+	$menuItem = $('.navbar .navbar-nav li');
+	pagename_atual = $page.data('pagename');
+
+	// reseta estado do menu
+	$menuItem.removeClass('active');
+
+	// marca a pagina correspondente no menu
+	$menuItem.find('a#' + pagename_atual).parent().addClass('active');
+
+
 	$('#form_envia_mensagem .btn-submit').click(function() {
 	//$('#form_envia_mensagem').submit(function(event) {
 
@@ -17,8 +29,8 @@ $(document).ready(function() {
 				data: "action=cadastrar&mensagem="+user_msg+"&nome="+user_nome+"&email="+user_email,
 				success: function(htmlResponse) {
 					if (htmlResponse == '1') {
-						$('#form_envia_mensagem .erro').html('Oba! Recebemos suas mensagem.');
 						limpaFormulario();
+						window.location.href="lista.php";
 					} else {
 						$('#form_envia_mensagem .erro').html('Ocorreu um erro. Sua mensagem não foi publicada.');
 					}
